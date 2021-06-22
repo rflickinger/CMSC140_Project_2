@@ -12,7 +12,7 @@ string country_list[20] = { "Brazil", "Canada", "China", "Colombia", "Croatia",
 //Defining country traits
 //Legend: |Value|Temperature Unit|Distance Unit|Weight Unit|Road Side Driven On|Drivers Seat Side|
 //		  |  1  |	Fareinheit	 |	   Miles   |   Pounds  |		Right	   |	  Right		 |
-//		  |  2  |	Celsius		 |  Kilometers | Kilograms |		Left	   |	  Left		 |
+//		  |  2  |	Celsius		 |  Kilometers | Kilograms |		Left	   |	  Left		 |a
 int country_traits[20][5] ={{2, 2, 2, 1, 2},
 							{2, 2, 2, 1, 2},
 							{2, 2, 2, 1, 2},
