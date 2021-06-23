@@ -100,7 +100,7 @@ void temp_conversion()
 	int converted_temp;
 	if (home_temp == 1)
 	{
-		cout << "Please enter an integer value for degrees Farenheit:" << endl;
+		cout << "Please enter an integer value for degrees Farenheit and press Enter:" << endl;
 		cin >> user_input;
 		while (loop_run)
 		{
@@ -131,7 +131,7 @@ void temp_conversion()
 	}
 	else if (home_temp == 2)
 	{
-		cout << "Please enter an integer value for degrees Celsius:" << endl;
+		cout << "Please enter an integer value for degrees Celsius and press Enter:" << endl;
 		cin >> user_input;
 		while (loop_run)
 		{
@@ -501,9 +501,9 @@ void replace_home()
 			home_country = return_reg_case(home_country);
 		}
 	}
+	cout << "\nYour home country has been set to: " << home_country << endl;
 	cout << endl;
 	cout << "Press Enter to continue.";
-	cin.ignore();
 	cin.get();
 	return;
 }
@@ -550,9 +550,10 @@ void replace_destination()
 			dest_country = return_reg_case(dest_country);
 		}
 	}
+	cout << "\nYour destination country has been set to: " << dest_country << endl;
+
 	cout << endl;
 	cout << "Press Enter to continue.";
-	cin.ignore();
 	cin.get();
 	return;
 }
@@ -575,7 +576,7 @@ int main()
 	}
 
 	//Take user input for home country
-	cout << endl << "Please enter a country from the list exactly as it is written above and press Enter." << endl;
+	cout << endl << "Please enter a country from the list to use as your home and press Enter." << endl;
 	getline(cin, home_country);
 
 	//Normalize case
@@ -613,7 +614,7 @@ int main()
 	cout << "Awesome! You have chosen " << home_country << "!" << endl << endl;
 
 	//Take destination input
-	cout << "Please enter a country from the list exactly as it is written above and press Enter." << endl;
+	cout << "Please enter a country from the list as your destination and press Enter." << endl;
 	getline(cin, dest_country);
 
 	//Normalize case
@@ -679,7 +680,7 @@ int main()
 		cout << "8. Exit program." << endl << endl;
 
 		cout << "Please select the number associated with the option you would like to select." << endl;
-		cout << "Please enter only a single digit between 1 and 8." << endl;
+		cout << "Please enter only a single digit between 1 and 8 and press Enter." << endl;
 
 		char first_character;
 		bool menu_validation = false;
@@ -687,7 +688,6 @@ int main()
 
 		cin.get(first_character);
 		cin.ignore();
-		cout << endl << "Character immediately after input: " << first_character << endl;
 
 		while (!menu_validation)
 		{	
@@ -698,7 +698,7 @@ int main()
 			}
 			else
 			{
-				cout << "Looks like you didn't choose a single digit between 1 and 8, please choose again" << endl;
+				cout << "Looks like you didn't choose a single digit between 1 and 8, please choose again and press Enter." << endl;
 				cin.get(first_character);
 				cin.ignore();
 			}
