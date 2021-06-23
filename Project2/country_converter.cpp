@@ -103,6 +103,9 @@ void randomize_countries()
 int main()
 {
 	bool loop_bool = true;
+	bool first_time_in_menu = true;
+	bool run_menu = true;
+
 	//Introduction of program to user
 	cout << "Welcome prospective traveler! Lets take a look at your upcoming trip!" << endl;
 	cout << "Get ready to enter the name of your home country! Press Enter to see the list of countries in my system." << endl;
@@ -115,7 +118,7 @@ int main()
 	}
 
 	//Take user input for home country
-	cout << "Please enter a country from the list exactly as it is written above" << endl;
+	cout << endl << "Please enter a country from the list exactly as it is written above and press Enter." << endl;
 	getline(cin, home_country);
 
 	//Validate that user has input a country on the list and store its index
@@ -146,10 +149,10 @@ int main()
 	home_weight = country_traits[home_country_index][2];
 	home_road_side = country_traits[home_country_index][3];
 	home_driving_side = country_traits[home_country_index][4];
-	cout << "Awesome! You have chosen " << home_country << "!" << endl;
+	cout << "Awesome! You have chosen " << home_country << "!" << endl << endl;
 
 	//Take destination input
-	cout << "Please enter a country from the list exactly as it is written above." << endl;
+	cout << "Please enter a country from the list exactly as it is written above and press Enter." << endl;
 	getline(cin, dest_country);
 
 	//Validate that user has input a country on the list and store its index
@@ -180,8 +183,63 @@ int main()
 	dest_weight = country_traits[dest_country_index][2];
 	dest_road_side = country_traits[dest_country_index][3];
 	dest_driving_side = country_traits[dest_country_index][4];
-	cout << "Great job! You have chosen " << dest_country << "!" << endl;
+	cout << "Great job! You have chosen " << dest_country << "!" << endl << endl ;
+	
+	while (run_menu)
+	{
+		//Displays the intro line only on the first iteration
+		if (first_time_in_menu) 
+		{
+			cout << "Below are the program options you can choose from." << endl << endl;
+		}
+		else
+		{
+			cout << "For a quick refresher, these are the menu options." << endl << endl;
+		}
 
+		//Display menu instructions and options
+		cout << "1. Convert temperature from your home country's units to your desitination country's units." << endl;
+		cout << "2. Convert distance from your home country's units to your desitination country's units." << endl;
+		cout << "3. Convert weight from your home country's units to your desitination country's units." << endl;
+		cout << "4. Display the side of the road driven on and drivers seat side for both countries." << endl;
+		cout << "5. Swap home and destination countries." << endl;
+		cout << "6. Choose a new home country." << endl;
+		cout << "7. Choose a new destination country." << endl;
+		cout << "8. Assign random countries from the list to home and desitnation." << endl;
+		cout << "9. Exit program" << endl << endl;
+
+		cout << "Please select the number associated with the option you would like to select." << endl;
+		cout << "Please enter only a single digit between 1 and 9." << endl;
+
+		char first_character;
+		bool menu_validation = false;
+		int func_choice;
+
+		cin.get(first_character);
+		cin.ignore();
+		cout << endl << "Character immediately after input: " << first_character << endl;
+
+		while (!menu_validation)
+		{	
+			if ((first_character >= 49) && (first_character <= 57))
+			{
+				cout << "In if valid" << endl;
+				menu_validation = true;
+				func_choice = first_character - 48;
+				cout << "Func_choice in if valid after being assigned: " << func_choice << endl;
+			}
+			else
+			{
+				cout << "Looks like you didn't choose a single digit between 1 and 9, please choose again" << endl;
+				
+				cout << "The failing char is '" << first_character << "'" << endl;
+				cin.get(first_character);
+				cin.ignore();
+				
+				cout << "Character after assignment in else '" << first_character << "'" << endl;
+			}
+		}
+	}
 
 	return 0;
 }
