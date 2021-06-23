@@ -428,6 +428,9 @@ void country_swap()
 	int temp_road_side = home_road_side;
 	int temp_driving_side = home_driving_side;
 
+	cout << "       Old home country: " << home_country << endl;
+	cout << "Old destination country: " << dest_country << endl;
+
 	home_country = dest_country;
 	home_temp = dest_temp;
 	home_dist = dest_dist;
@@ -443,20 +446,110 @@ void country_swap()
 	dest_driving_side = temp_driving_side;
 
 	cout << "Home and destination country have been swapped." << endl;
-
+	cout << "       New home country: " << home_country << endl;
+	cout << "New destination country: " << dest_country << endl;
+	cout << endl;
+	cout << "Press Enter to continue.";
+	cin.get();
 	return;
 }
 
 //Allows the user to choose a new home country
 void replace_home()
 {
+	bool loop_bool = true;
+	string home_holder = home_country;
 
+	cout << "Go ahead and choose a new home country. See the list below:" << endl;
+
+	for (string print_country : country_list)
+	{
+		cout << print_country << endl;
+	}
+	cout << endl << "Please enter a country from the list exactly as it is written above and press Enter." << endl;
+	getline(cin, home_country);
+	home_country = return_reg_case(home_country);
+
+	while (loop_bool)
+	{
+		bool is_valid = false;
+		for (int i = 0; i < sizeof(country_list) / sizeof(country_list[0]); i++)
+		{
+			if (home_country == country_list[i])
+			{
+				home_country_index = i;
+				i = sizeof(country_list) / sizeof(country_list[0]);
+				loop_bool = false;
+				is_valid = true;
+			}
+		}
+		if ((home_country == dest_country) || (home_country == home_holder))
+		{
+			cout << "Sorry, the same country cannot be chosen for both home and destination, and you must choose a new country for home. Please choose again." << endl;
+			getline(cin, home_country);
+			loop_bool = true;
+		}
+		else if (!is_valid)
+		{
+			cout << "Oops! Looks like you chose an invalid option, please try again!" << endl;
+			getline(cin, home_country);
+			home_country = return_reg_case(home_country);
+		}
+	}
+	cout << endl;
+	cout << "Press Enter to continue.";
+	cin.ignore();
+	cin.get();
+	return;
 }
 
 //Allows the user to choose a new desitination country
 void replace_destination()
 {
+	bool loop_bool = true;
+	string dest_holder = dest_country;
 
+	cout << "Go ahead and choose a new destination country. See the list below:" << endl;
+
+	for (string print_country : country_list)
+	{
+		cout << print_country << endl;
+	}
+	cout << endl << "Please enter a country from the list exactly as it is written above and press Enter." << endl;
+	getline(cin, dest_country);
+	dest_country = return_reg_case(dest_country);
+
+	while (loop_bool)
+	{
+		bool is_valid = false;
+		for (int i = 0; i < sizeof(country_list) / sizeof(country_list[0]); i++)
+		{
+			if (dest_country == country_list[i])
+			{
+				home_country_index = i;
+				i = sizeof(country_list) / sizeof(country_list[0]);
+				loop_bool = false;
+				is_valid = true;
+			}
+		}
+		if ((dest_country == home_country) || (dest_country == dest_holder))
+		{
+			cout << "Sorry, the same country cannot be chosen for both home and destination, and you must choose a new country for destination. Please choose again." << endl;
+			getline(cin, dest_country);
+			loop_bool = true;
+		}
+		else if (!is_valid)
+		{
+			cout << "Oops! Looks like you chose an invalid option, please try again!" << endl;
+			getline(cin, dest_country);
+			dest_country = return_reg_case(dest_country);
+		}
+	}
+	cout << endl;
+	cout << "Press Enter to continue.";
+	cin.ignore();
+	cin.get();
+	return;
 }
 
 int main()
@@ -581,7 +674,7 @@ int main()
 		cout << "8. Exit program." << endl << endl;
 
 		cout << "Please select the number associated with the option you would like to select." << endl;
-		cout << "Please enter only a single digit between 1 and 9." << endl;
+		cout << "Please enter only a single digit between 1 and 8." << endl;
 
 		char first_character;
 		bool menu_validation = false;
@@ -593,7 +686,7 @@ int main()
 
 		while (!menu_validation)
 		{	
-			if ((first_character >= 49) && (first_character <= 57))
+			if ((first_character >= 49) && (first_character <= 56))
 			{
 				cout << "In if valid" << endl;
 				menu_validation = true;
@@ -602,7 +695,7 @@ int main()
 			}
 			else
 			{
-				cout << "Looks like you didn't choose a single digit between 1 and 9, please choose again" << endl;
+				cout << "Looks like you didn't choose a single digit between 1 and 8, please choose again" << endl;
 				
 				cout << "The failing char is '" << first_character << "'" << endl;
 				cin.get(first_character);
