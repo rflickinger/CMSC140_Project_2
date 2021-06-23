@@ -253,7 +253,30 @@ void driving_info()
 //Swaps the home and destination countries
 void country_swap()
 {
+	string temp_country = home_country;
+	int temp_temp = home_temp;
+	int temp_dist = home_dist;
+	int temp_weight = home_weight;
+	int temp_road_side = home_road_side;
+	int temp_driving_side = home_driving_side;
 
+	home_country = dest_country;
+	home_temp = dest_temp;
+	home_dist = dest_dist;
+	home_weight = dest_weight;
+	home_road_side = dest_road_side;
+	home_driving_side = dest_driving_side;
+
+	dest_country = temp_country;
+	dest_temp = temp_temp;
+	dest_dist = temp_dist;
+	dest_weight = temp_weight;
+	dest_road_side = temp_road_side;
+	dest_driving_side = temp_driving_side;
+
+	cout << "Home and destination country have been swapped." << endl;
+
+	return;
 }
 
 //Allows the user to choose a new home country
