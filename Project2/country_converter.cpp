@@ -52,6 +52,39 @@ int dest_weight;
 int dest_road_side;
 int dest_driving_side;
 
+//Convert string to normal pronoun case
+string return_reg_case(string my_str)
+{
+	string output_str;
+	bool first_char_in_word = true;
+
+	for (int i = 0; i < my_str.length(); i++)
+	{
+		if (first_char_in_word)
+		{
+			if (my_str[i] == 32)
+			{
+				first_char_in_word = true;
+			}
+			else
+			{
+				output_str += toupper(my_str[i]);
+				first_char_in_word = false;
+			}
+		}
+		else if (my_str[i] == 32)
+		{
+			output_str += my_str[i];
+			first_char_in_word = true;
+		}
+		else
+		{
+			output_str += tolower(my_str[i]);
+		}
+	}
+	return output_str;
+}
+
 //Converts temperature value input by user from home country's units to desitnation country's units
 void temp_conversion()
 {
@@ -121,6 +154,9 @@ int main()
 	cout << endl << "Please enter a country from the list exactly as it is written above and press Enter." << endl;
 	getline(cin, home_country);
 
+	//Normalize case
+	home_country = return_reg_case(home_country);
+
 	//Validate that user has input a country on the list and store its index
 	while (loop_bool)
 	{
@@ -139,6 +175,7 @@ int main()
 		{
 			cout << "Oops! Looks like you chose an invalid option, please try again!" << endl;
 			getline(cin, home_country);
+			home_country = return_reg_case(home_country);
 		}
 	}
 	loop_bool = true;
@@ -154,6 +191,9 @@ int main()
 	//Take destination input
 	cout << "Please enter a country from the list exactly as it is written above and press Enter." << endl;
 	getline(cin, dest_country);
+
+	//Normalize case
+	dest_country = return_reg_case(dest_country);
 
 	//Validate that user has input a country on the list and store its index
 	while (loop_bool)
@@ -173,6 +213,7 @@ int main()
 		{
 			cout << "Oops! Looks like you chose an invalid option, please try again!" << endl;
 			getline(cin, dest_country);
+			dest_country = return_reg_case(dest_country);
 		}
 	}
 	loop_bool = true;
@@ -206,7 +247,7 @@ int main()
 		cout << "6. Choose a new home country." << endl;
 		cout << "7. Choose a new destination country." << endl;
 		cout << "8. Assign random countries from the list to home and desitnation." << endl;
-		cout << "9. Exit program" << endl << endl;
+		cout << "9. Exit program." << endl << endl;
 
 		cout << "Please select the number associated with the option you would like to select." << endl;
 		cout << "Please enter only a single digit between 1 and 9." << endl;
@@ -239,6 +280,39 @@ int main()
 				cout << "Character after assignment in else '" << first_character << "'" << endl;
 			}
 		}
+
+		switch (func_choice)
+		{
+			case 1:
+				temp_conversion();
+				break;
+			case 2:
+				dist_conversion();
+				break;
+			case 3:
+				weight_conversion();
+				break;
+			case 4:
+				driving_info();
+				break;
+			case 5:
+				country_swap();
+				break;
+			case 6:
+				replace_home();
+				break;
+			case 7:
+				replace_destination();
+				break;
+			case 8:
+				randomize_countries();
+				break;
+			case 9:
+				run_menu = false; 
+				cout << "Goodbye!" << endl;
+
+		}
+
 	}
 
 	return 0;
