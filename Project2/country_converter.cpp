@@ -52,6 +52,7 @@ int dest_weight;
 int dest_road_side;
 int dest_driving_side;
 
+
 //Convert string to normal pronoun case
 string return_reg_case(string my_str)
 {
@@ -167,15 +168,36 @@ void temp_conversion()
 //Converts distance value input by user from home country's units to destination country's units
 void dist_conversion()
 {
+	bool loop_run = true;
+	float user_input;
+	float converted_dist;
+	cout << fixed << setprecision(1);
+
 	if (home_dist == 1)
 	{
+		cout << "Please enter a float (decimal) value for distance in miles:" << endl;
+		cin >> user_input;
+		while (loop_run)
+		{
+			if ((user_input >= 0) && (user_input <= 5600))
+			{
+				cout << "You have entered: " << user_input << " miles." << endl;
+				loop_run = false;
+			}
+			else
+			{
+				cout << "Invalid input. Please try again." << endl;
+				cin >> user_input;
+			}
+		}
 		if (dest_dist == 1)
 		{
-
+			cout << "In " << dest_country << " this is also represented as " << user_input << " miles." << endl;
 		}
 		else if (dest_dist == 2)
 		{
-
+			converted_dist = 1.609 * user_input;
+			cout << "In " << dest_country << " this is also represented as " << converted_dist << " kilometers." << endl;
 		}
 		else
 		{
@@ -184,13 +206,29 @@ void dist_conversion()
 	}
 	else if (home_dist == 2)
 	{
+		cout << "Please insert a float (decimal) value for distance in kilometers:" << endl;
+		cin >> user_input;
+		while (loop_run)
+		{
+			if ((user_input >= 0) && (user_input <= 9013))
+			{
+				cout << "You have entered: " << user_input << " kilometers." << endl;
+				loop_run = false;
+			}
+			else
+			{
+				cout << "Invalid input. Please try again." << endl;
+				cin >> user_input;
+			}
+		}
 		if (dest_dist == 1)
 		{
-
+			converted_dist = user_input / 1.609;
+			cout << "In " << dest_country << " this is represented as " << converted_dist << " miles." << endl;
 		}
 		else if (dest_dist == 2)
 		{
-
+			cout << "In " << dest_country << " this is also represented as " << user_input << " kilometers." << endl;
 		}
 		else
 		{
@@ -201,6 +239,9 @@ void dist_conversion()
 	{
 		cout << "Error with home_dist value. Value is :" << home_dist << endl;
 	}
+	cout << "Press Enter to continue.";
+	cin.ignore();
+	cin.get();
 	return;
 }
 
