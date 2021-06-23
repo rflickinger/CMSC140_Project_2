@@ -197,7 +197,7 @@ void dist_conversion()
 		else if (dest_dist == 2)
 		{
 			converted_dist = 1.609 * user_input;
-			cout << "In " << dest_country << " this is also represented as " << converted_dist << " kilometers." << endl;
+			cout << "In " << dest_country << " " << user_input << " miles is represented as " << converted_dist << " kilometers." << endl;
 		}
 		else
 		{
@@ -224,7 +224,7 @@ void dist_conversion()
 		if (dest_dist == 1)
 		{
 			converted_dist = user_input / 1.609;
-			cout << "In " << dest_country << " this is represented as " << converted_dist << " miles." << endl;
+			cout << "In " << dest_country << " " << user_input << "kilometers is represented as " << converted_dist << " miles." << endl;
 		}
 		else if (dest_dist == 2)
 		{
@@ -242,21 +242,43 @@ void dist_conversion()
 	cout << "Press Enter to continue.";
 	cin.ignore();
 	cin.get();
+	cout << setprecision(6) << scientific;
 	return;
 }
 
 //Converts weight value input by user from home country's units to desitnation country's units
 void weight_conversion()
 {
+	bool loop_run = true;
+	float user_input;
+	float converted_weight;
+	cout << fixed << setprecision(1);
+
 	if (home_weight == 1)
 	{
+		cout << "Please enter a float (decimal) value for weight in pounds:" << endl;
+		cin >> user_input;
+		while (loop_run)
+		{
+			if ((user_input >= 0) && (user_input <= 44000))
+			{
+				cout << "You have entered: " << user_input << " pounds." << endl;
+				loop_run = false;
+			}
+			else
+			{
+				cout << "Invalid input. Please try again." << endl;
+				cin >> user_input;
+			}
+		}
 		if (dest_weight == 1)
 		{
-
+			cout << "In " << dest_country << " this is also represented as " << user_input << " pounds." << endl;
 		}
 		else if (dest_weight == 2)
 		{
-
+			converted_weight = user_input * 0.45359237;
+			cout << "In " << dest_country << " " << user_input << " pounds is represented as " << converted_weight << " kilograms." << endl;
 		}
 		else
 		{
@@ -265,13 +287,29 @@ void weight_conversion()
 	}
 	else if (home_weight == 2)
 	{
+		cout << "Please enter a float (decimal) value for weight in kilograms:" << endl;
+		cin >> user_input;
+		while (loop_run)
+		{
+			if ((user_input >= 0) && (user_input <= 20000))
+			{
+				cout << "You have entered: " << user_input << " kilograms." << endl;
+				loop_run = false;
+			}
+			else
+			{
+				cout << "Invalid input. Please try again." << endl;
+				cin >> user_input;
+			}
+		}
 		if (dest_weight == 1)
 		{
-
+			converted_weight = user_input / 0.45359237;
+			cout << "In " << dest_country << " " << user_input << " kilograms is represented as " << converted_weight << " pounds." << endl;
 		}
 		else if (dest_weight == 2)
 		{
-
+			cout << "In " << dest_country << " this is also represented as " << user_input << " kilograms." << endl;
 		}
 		else
 		{
@@ -282,6 +320,10 @@ void weight_conversion()
 	{
 		cout << "Error with home_weight value. Value is :" << home_weight << endl;
 	}
+	cout << "Press Enter to continue.";
+	cin.ignore();
+	cin.get();
+	cout << setprecision(6) << scientific;
 	return;
 }
 
