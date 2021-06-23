@@ -5,6 +5,11 @@
 #include <ios>
 using namespace std;
 
+//Course Variables
+const string programmer_name = "Ryan Flickinger";
+const string due_date = "6/28/2021";
+const string project_number = "CMSC 140 Project 2";
+
 //Country list for referencing against trait table
 string country_list[20] = { "Brazil", "Canada", "China", "Colombia", "Croatia",
 						"Finland", "Greece", "Israel", "Italy", "Japan", "Liberia",
@@ -688,20 +693,14 @@ int main()
 		{	
 			if ((first_character >= 49) && (first_character <= 56))
 			{
-				cout << "In if valid" << endl;
 				menu_validation = true;
 				func_choice = first_character - 48;
-				cout << "Func_choice in if valid after being assigned: " << func_choice << endl;
 			}
 			else
 			{
 				cout << "Looks like you didn't choose a single digit between 1 and 8, please choose again" << endl;
-				
-				cout << "The failing char is '" << first_character << "'" << endl;
 				cin.get(first_character);
 				cin.ignore();
-				
-				cout << "Character after assignment in else '" << first_character << "'" << endl;
 			}
 		}
 
@@ -735,6 +734,9 @@ int main()
 		}
 
 	}
-
+	cout << "\nThank you for testing my program!!\n";
+	cout << "Programmer: " << programmer_name << "\n";
+	cout << project_number << "\n";
+	cout << "Due Date: " << due_date << "\n";
 	return 0;
 }
