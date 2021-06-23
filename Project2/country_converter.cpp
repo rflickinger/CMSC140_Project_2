@@ -88,19 +88,160 @@ string return_reg_case(string my_str)
 //Converts temperature value input by user from home country's units to desitnation country's units
 void temp_conversion()
 {
-
+	bool loop_run = true;
+	int user_input;
+	int converted_temp;
+	if (home_temp == 1)
+	{
+		cout << "Please enter an integer value for degrees Farenheit:" << endl;
+		cin >> user_input;
+		while (loop_run)
+		{
+			if ((user_input >= -126) && (user_input <= 136))
+			{
+				cout << "You have entered: " << user_input << " degrees f." << endl;
+			}
+			else
+			{
+				cout << "Invalid input. Please try again." << endl;
+				cin >> user_input;
+			}
+		}
+		if (dest_temp == 1)
+		{
+			cout << "In " << dest_country << " this is also represented as " << user_input << " degrees f." << endl;
+			return;
+		}
+		else if (dest_temp == 2)
+		{
+			converted_temp = (9.0 * (static_cast<float>(user_input) - 32.0)) / 5;
+			cout << "In " << dest_country << " " << user_input << " degrees f is represented as " << converted_temp << " degrees c." << endl;
+			return;
+		}
+		else
+		{
+			cout << "Error with dest_temp value. Value is :" << dest_temp << endl;
+			return;
+		}
+	}
+	else if (home_temp == 2)
+	{
+		cout << "Please enter an integer value for degrees Celsius:" << endl;
+		cin >> user_input;
+		while (loop_run)
+		{
+			if ((user_input >= -88) && (user_input <= 58))
+			{
+				cout << "You have entered: " << user_input << " degrees c." << endl;
+			}
+			else
+			{
+				cout << "Invalid input. Please try again." << endl;
+				cin >> user_input;
+			}
+		}
+		if (dest_temp == 1)
+		{
+			converted_temp = 1.8 * static_cast<float>(user_input) + 32.0;
+			cout << "In " << dest_country << " " << user_input << " degrees c is represented as " << converted_temp << " degrees f." << endl;
+			return;
+			
+		}
+		else if (dest_temp == 2)
+		{
+			cout << "In " << dest_country << " this is also represented as " << user_input << " degrees c." << endl;
+			return;
+		}
+		else
+		{
+			cout << "Error with dest_temp value. Value is :" << dest_temp << endl;
+		}
+	}
+	else
+	{
+		cout << "Error with home_temp value. Value is :" << home_temp << endl;
+	}
+	return;
 }
 
 //Converts distance value input by user from home country's units to destination country's units
 void dist_conversion()
 {
+	if (home_dist == 1)
+	{
+		if (dest_dist == 1)
+		{
 
+		}
+		else if (dest_dist == 2)
+		{
+
+		}
+		else
+		{
+			cout << "Error with dest_dist value. Value is :" << dest_dist << endl;
+		}
+	}
+	else if (home_dist == 2)
+	{
+		if (dest_dist == 1)
+		{
+
+		}
+		else if (dest_dist == 2)
+		{
+
+		}
+		else
+		{
+			cout << "Error with dest_dist value. Value is :" << dest_dist << endl;
+		}
+	}
+	else
+	{
+		cout << "Error with home_dist value. Value is :" << home_dist << endl;
+	}
+	return;
 }
 
 //Converts weight value input by user from home country's units to desitnation country's units
 void weight_conversion()
 {
+	if (home_weight == 1)
+	{
+		if (dest_weight == 1)
+		{
 
+		}
+		else if (dest_weight == 2)
+		{
+
+		}
+		else
+		{
+			cout << "Error with dest_weight value. Value is :" << dest_weight << endl;
+		}
+	}
+	else if (home_weight == 2)
+	{
+		if (dest_weight == 1)
+		{
+
+		}
+		else if (dest_weight == 2)
+		{
+
+		}
+		else
+		{
+			cout << "Error with dest_weight value. Value is :" << dest_weight << endl;
+		}
+	}
+	else
+	{
+		cout << "Error with home_weight value. Value is :" << home_weight << endl;
+	}
+	return;
 }
 
 //Displays both countries' driving info
