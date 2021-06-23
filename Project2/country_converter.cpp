@@ -535,7 +535,13 @@ int main()
 				is_valid = true;
 			}
 		}
-		if (!is_valid)
+		if (dest_country == home_country)
+		{
+			cout << "Sorry, the same country cannot be chosen for both home and destination. Please choose again." << endl;
+			getline(cin, dest_country);
+			loop_bool = true;
+		}
+		else if (!is_valid)
 		{
 			cout << "Oops! Looks like you chose an invalid option, please try again!" << endl;
 			getline(cin, dest_country);
