@@ -100,6 +100,7 @@ void temp_conversion()
 			if ((user_input >= -126) && (user_input <= 136))
 			{
 				cout << "You have entered: " << user_input << " degrees f." << endl;
+				loop_run = false;
 			}
 			else
 			{
@@ -110,18 +111,15 @@ void temp_conversion()
 		if (dest_temp == 1)
 		{
 			cout << "In " << dest_country << " this is also represented as " << user_input << " degrees f." << endl;
-			return;
 		}
 		else if (dest_temp == 2)
 		{
-			converted_temp = (9.0 * (static_cast<float>(user_input) - 32.0)) / 5;
+			converted_temp = (5.0 * (static_cast<float>(user_input) - 32.0)) / 9.0;
 			cout << "In " << dest_country << " " << user_input << " degrees f is represented as " << converted_temp << " degrees c." << endl;
-			return;
 		}
 		else
 		{
 			cout << "Error with dest_temp value. Value is :" << dest_temp << endl;
-			return;
 		}
 	}
 	else if (home_temp == 2)
@@ -133,6 +131,7 @@ void temp_conversion()
 			if ((user_input >= -88) && (user_input <= 58))
 			{
 				cout << "You have entered: " << user_input << " degrees c." << endl;
+				loop_run = false;
 			}
 			else
 			{
@@ -144,13 +143,11 @@ void temp_conversion()
 		{
 			converted_temp = 1.8 * static_cast<float>(user_input) + 32.0;
 			cout << "In " << dest_country << " " << user_input << " degrees c is represented as " << converted_temp << " degrees f." << endl;
-			return;
 			
 		}
 		else if (dest_temp == 2)
 		{
 			cout << "In " << dest_country << " this is also represented as " << user_input << " degrees c." << endl;
-			return;
 		}
 		else
 		{
@@ -161,6 +158,9 @@ void temp_conversion()
 	{
 		cout << "Error with home_temp value. Value is :" << home_temp << endl;
 	}
+	cout << "Press Enter to continue.";
+	cin.ignore();
+	cin.get();
 	return;
 }
 
