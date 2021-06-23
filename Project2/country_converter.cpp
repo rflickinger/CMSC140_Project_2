@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <string>
 #include <array>
+#include <ios>
 using namespace std;
 
 //Country list for referencing against trait table
@@ -330,7 +331,91 @@ void weight_conversion()
 //Displays both countries' driving info
 void driving_info()
 {
+	string home_output, dest_output;
+	int difference, difference_halved;
+	int max_size = 14;
+	bool is_odd;
+	string temp;
 
+	difference = max_size - home_country.length();
+	difference_halved = difference / 2;
+	is_odd = (difference % 2) == 1;
+	home_output = home_country;
+
+	for (int i = 0; i < difference_halved; i++)
+	{
+		temp += ' ';
+		home_output += ' ';
+		temp += home_output;
+		home_output = temp;
+		temp = "";
+	}
+	if (is_odd)
+	{
+		home_output += ' ';
+	}
+
+	difference = max_size - dest_country.length();
+	difference_halved = difference / 2;
+	is_odd = (difference % 2) == 1;
+	dest_output = dest_country;
+
+	for (int i = 0; i < difference_halved; i++)
+	{
+		temp += ' ';
+		dest_output += ' ';
+		temp += dest_output;
+		dest_output = temp;
+		temp = "";
+	}
+	if (is_odd)
+	{
+		dest_output += ' ';
+	}
+
+	cout << "               Country: ";
+	cout << home_output << dest_output << endl;
+	cout << "Side of road driven on: ";
+	if (home_road_side == 1)
+	{
+		cout << "     Right    ";
+	}
+	else
+	{
+		cout << "     Left     ";
+	}
+	if (dest_road_side == 1)
+	{
+		cout << "     Right    ";
+	}
+	else
+	{
+		cout << "     Left     ";
+	}
+	cout << endl;
+
+	cout << "    Driver's seat side: ";
+	if (home_driving_side == 1)
+	{
+		cout << "     Left     ";
+	}
+	else
+	{
+		cout << "     Right    ";
+	}
+	if (dest_road_side == 1)
+	{
+		cout << "     Left     ";
+	}
+	else
+	{
+		cout << "     Right    ";
+	}
+	cout << endl << endl;
+	cout << "Press Enter to continue.";
+	cin.ignore();
+	cin.get();
+	return;
 }
 
 //Swaps the home and destination countries
@@ -370,12 +455,6 @@ void replace_home()
 
 //Allows the user to choose a new desitination country
 void replace_destination()
-{
-
-}
-
-//Randomly chooses two new countries for the user
-void randomize_countries()
 {
 
 }
@@ -493,8 +572,7 @@ int main()
 		cout << "5. Swap home and destination countries." << endl;
 		cout << "6. Choose a new home country." << endl;
 		cout << "7. Choose a new destination country." << endl;
-		cout << "8. Assign random countries from the list to home and desitnation." << endl;
-		cout << "9. Exit program." << endl << endl;
+		cout << "8. Exit program." << endl << endl;
 
 		cout << "Please select the number associated with the option you would like to select." << endl;
 		cout << "Please enter only a single digit between 1 and 9." << endl;
@@ -552,9 +630,6 @@ int main()
 				replace_destination();
 				break;
 			case 8:
-				randomize_countries();
-				break;
-			case 9:
 				run_menu = false; 
 				cout << "Goodbye!" << endl;
 
