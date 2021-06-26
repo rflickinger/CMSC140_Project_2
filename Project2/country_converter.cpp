@@ -100,7 +100,7 @@ void temp_conversion()
 	int converted_temp;
 	if (home_temp == 1)
 	{
-		cout << "Please enter an integer value for degrees Farenheit and press Enter:" << endl;
+		cout << "Please enter an integer value for degrees Fahrenheit and press Enter:" << endl;
 		cin >> user_input;
 		while (loop_run)
 		{
@@ -408,7 +408,7 @@ void driving_info()
 	{
 		cout << "     Right    ";
 	}
-	if (dest_road_side == 1)
+	if (dest_driving_side == 1)
 	{
 		cout << "     Left     ";
 	}
@@ -492,6 +492,7 @@ void replace_home()
 		{
 			cout << "Sorry, the same country cannot be chosen for both home and destination, and you must choose a new country for home. Please choose again." << endl;
 			getline(cin, home_country);
+			home_country = return_reg_case(home_country);
 			loop_bool = true;
 		}
 		else if (not_valid)
@@ -531,7 +532,7 @@ void replace_destination()
 		{
 			if (dest_country == country_list[i])
 			{
-				home_country_index = i;
+				dest_country_index = i;
 				i = sizeof(country_list) / sizeof(country_list[0]);
 				loop_bool = false;
 				not_valid = false;
@@ -541,6 +542,7 @@ void replace_destination()
 		{
 			cout << "Sorry, the same country cannot be chosen for both home and destination, and you must choose a new country for destination. Please choose again." << endl;
 			getline(cin, dest_country);
+			dest_country = return_reg_case(dest_country);
 			loop_bool = true;
 		}
 		else if (not_valid)
@@ -638,6 +640,7 @@ int main()
 		{
 			cout << "Sorry, the same country cannot be chosen for both home and destination. Please choose again." << endl;
 			getline(cin, dest_country);
+			dest_country = return_reg_case(dest_country);
 			loop_bool = true;
 		}
 		else if (not_valid)
