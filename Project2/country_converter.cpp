@@ -59,7 +59,7 @@ int dest_road_side;
 int dest_driving_side;
 
 
-//Convert string to normal pronoun case
+//Convert string to title case and remove all extra white space
 string return_reg_case(string my_str)
 {
 	string output_str;
@@ -682,24 +682,24 @@ int main()
 		cout << "Please select the number associated with the option you would like to select." << endl;
 		cout << "Please enter only a single digit between 1 and 8 and press Enter." << endl;
 
-		char first_character;
+		char input_char;
 		bool menu_validation = false;
 		int func_choice;
 
-		cin.get(first_character);
+		cin.get(input_char);
 		cin.ignore();
 
 		while (!menu_validation)
 		{	
-			if ((first_character >= 49) && (first_character <= 56))
+			if ((input_char >= 49) && (input_char <= 56))
 			{
 				menu_validation = true;
-				func_choice = first_character - 48;
+				func_choice = input_char - 48;
 			}
 			else
 			{
 				cout << "Looks like you didn't choose a single digit between 1 and 8, please choose again and press Enter." << endl;
-				cin.get(first_character);
+				cin.get(input_char);
 				cin.ignore();
 			}
 		}
