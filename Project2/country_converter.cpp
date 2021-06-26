@@ -477,7 +477,7 @@ void replace_home()
 
 	while (loop_bool)
 	{
-		bool is_valid = false;
+		bool not_valid = true;
 		for (int i = 0; i < sizeof(country_list) / sizeof(country_list[0]); i++)
 		{
 			if (home_country == country_list[i])
@@ -485,7 +485,7 @@ void replace_home()
 				home_country_index = i;
 				i = sizeof(country_list) / sizeof(country_list[0]);
 				loop_bool = false;
-				is_valid = true;
+				not_valid = false;
 			}
 		}
 		if ((home_country == dest_country) || (home_country == home_holder))
@@ -494,7 +494,7 @@ void replace_home()
 			getline(cin, home_country);
 			loop_bool = true;
 		}
-		else if (!is_valid)
+		else if (not_valid)
 		{
 			cout << "Oops! Looks like you chose an invalid option, please try again!" << endl;
 			getline(cin, home_country);
@@ -526,7 +526,7 @@ void replace_destination()
 
 	while (loop_bool)
 	{
-		bool is_valid = false;
+		bool not_valid = true;
 		for (int i = 0; i < sizeof(country_list) / sizeof(country_list[0]); i++)
 		{
 			if (dest_country == country_list[i])
@@ -534,7 +534,7 @@ void replace_destination()
 				home_country_index = i;
 				i = sizeof(country_list) / sizeof(country_list[0]);
 				loop_bool = false;
-				is_valid = true;
+				not_valid = false;
 			}
 		}
 		if ((dest_country == home_country) || (dest_country == dest_holder))
@@ -543,7 +543,7 @@ void replace_destination()
 			getline(cin, dest_country);
 			loop_bool = true;
 		}
-		else if (!is_valid)
+		else if (not_valid)
 		{
 			cout << "Oops! Looks like you chose an invalid option, please try again!" << endl;
 			getline(cin, dest_country);
@@ -585,7 +585,7 @@ int main()
 	//Validate that user has input a country on the list and store its index
 	while (loop_bool)
 	{
-		bool is_valid = false;
+		bool not_valid = true;
 		for (int i = 0; i < sizeof(country_list)/sizeof(country_list[0]); i++)
 		{
 			if (home_country == country_list[i])
@@ -593,10 +593,10 @@ int main()
 				home_country_index = i;
 				i = sizeof(country_list) / sizeof(country_list[0]);
 				loop_bool = false;
-				is_valid = true;
+				not_valid = false;
 			}
 		}
-		if (!is_valid)
+		if (not_valid)
 		{
 			cout << "Oops! Looks like you chose an invalid option, please try again!" << endl;
 			getline(cin, home_country);
@@ -623,7 +623,7 @@ int main()
 	//Validate that user has input a country on the list and store its index
 	while (loop_bool)
 	{
-		bool is_valid = false;
+		bool not_valid = true;
 		for (int i = 0; i < sizeof(country_list) / sizeof(country_list[0]); i++)
 		{
 			if (dest_country == country_list[i])
@@ -631,7 +631,7 @@ int main()
 				dest_country_index = i;
 				i = sizeof(country_list) / sizeof(country_list[0]);
 				loop_bool = false;
-				is_valid = true;
+				not_valid = false;
 			}
 		}
 		if (dest_country == home_country)
@@ -640,7 +640,7 @@ int main()
 			getline(cin, dest_country);
 			loop_bool = true;
 		}
-		else if (!is_valid)
+		else if (not_valid)
 		{
 			cout << "Oops! Looks like you chose an invalid option, please try again!" << endl;
 			getline(cin, dest_country);
