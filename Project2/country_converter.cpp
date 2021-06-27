@@ -2,7 +2,6 @@
 #include <iomanip>
 #include <string>
 #include <array>
-#include <ios>
 using namespace std;
 
 //Course Variables
@@ -65,6 +64,7 @@ string return_reg_case(string my_str)
 	string output_str;
 	bool first_char_in_word = true;
 
+	//iteraates over string until last index
 	for (int i = 0; i < my_str.length(); i++)
 	{
 		if (first_char_in_word)
@@ -102,6 +102,7 @@ void temp_conversion()
 	{
 		cout << "Please enter an integer value for degrees Fahrenheit and press Enter:" << endl;
 		cin >> user_input;
+		//loop runs until an int between -126 and 136 is selected
 		while (loop_run)
 		{
 			if ((user_input >= -126) && (user_input <= 136))
@@ -111,7 +112,7 @@ void temp_conversion()
 			}
 			else
 			{
-				cout << "Invalid input. Please try again." << endl;
+				cout << "Input must be a temperature recorded on Earth (between -126 and 136 degrees f)." << endl;
 				cin >> user_input;
 			}
 		}
@@ -133,6 +134,7 @@ void temp_conversion()
 	{
 		cout << "Please enter an integer value for degrees Celsius and press Enter:" << endl;
 		cin >> user_input;
+		//runs until an integer between -88 and 58 is selected
 		while (loop_run)
 		{
 			if ((user_input >= -88) && (user_input <= 58))
@@ -142,7 +144,7 @@ void temp_conversion()
 			}
 			else
 			{
-				cout << "Invalid input. Please try again." << endl;
+				cout << "Input must be a temperature recorded on Earth (between -88 and 58 degrees c)." << endl;
 				cin >> user_input;
 			}
 		}
@@ -185,6 +187,7 @@ void dist_conversion()
 		cin >> user_input;
 		while (loop_run)
 		{
+			//runs until a float betweeen 0 and 5600 is selected
 			if ((user_input >= 0) && (user_input <= 5600))
 			{
 				cout << "You have entered: " << user_input << " miles." << endl;
@@ -192,7 +195,7 @@ void dist_conversion()
 			}
 			else
 			{
-				cout << "Invalid input. Please try again." << endl;
+				cout << "You've entered a value out of range. Please choose between 0 and 5600 miles." << endl; //distance east to west across Russia
 				cin >> user_input;
 			}
 		}
@@ -214,6 +217,7 @@ void dist_conversion()
 	{
 		cout << "Please insert a float (decimal) value for distance in kilometers:" << endl;
 		cin >> user_input;
+		//runs until a float between 0 and 9013 is selected
 		while (loop_run)
 		{
 			if ((user_input >= 0) && (user_input <= 9013))
@@ -223,7 +227,7 @@ void dist_conversion()
 			}
 			else
 			{
-				cout << "Invalid input. Please try again." << endl;
+				cout << "You've entered a value out of range. Please choose between 0 and 9013 Kilometers." << endl;  //distance east to west across Russia
 				cin >> user_input;
 			}
 		}
@@ -264,6 +268,7 @@ void weight_conversion()
 	{
 		cout << "Please enter a float (decimal) value for weight in pounds:" << endl;
 		cin >> user_input;
+		//runs until a float between 0 and 44000 is selected
 		while (loop_run)
 		{
 			if ((user_input >= 0) && (user_input <= 44000))
@@ -273,7 +278,7 @@ void weight_conversion()
 			}
 			else
 			{
-				cout << "Invalid input. Please try again." << endl;
+				cout << "You've entered a value out of range, the minimum is 0 and maximum is 44000 lbs." << endl; // weight of a passenger bus
 				cin >> user_input;
 			}
 		}
@@ -295,6 +300,7 @@ void weight_conversion()
 	{
 		cout << "Please enter a float (decimal) value for weight in kilograms:" << endl;
 		cin >> user_input;
+		//runs until a float between 0 and 20000 is selected
 		while (loop_run)
 		{
 			if ((user_input >= 0) && (user_input <= 20000))
@@ -304,7 +310,7 @@ void weight_conversion()
 			}
 			else
 			{
-				cout << "Invalid input. Please try again." << endl;
+				cout << "You've entered an input out of range, the miniumum is 0 and maximum is 20000 Kgs." << endl; // weight of a passenger bus
 				cin >> user_input;
 			}
 		}
@@ -347,6 +353,7 @@ void driving_info()
 	is_odd = (difference % 2) == 1;
 	home_output = home_country;
 
+	//adds whitespace to either side of the home country to place it in center of later printed column
 	for (int i = 0; i < difference_halved; i++)
 	{
 		temp += ' ';
@@ -365,6 +372,7 @@ void driving_info()
 	is_odd = (difference % 2) == 1;
 	dest_output = dest_country;
 
+	//adds whitespace to either side of the destination country to place it in center of later printed column
 	for (int i = 0; i < difference_halved; i++)
 	{
 		temp += ' ';
@@ -402,19 +410,19 @@ void driving_info()
 	cout << "    Driver's seat side: ";
 	if (home_driving_side == 1)
 	{
-		cout << "     Left     ";
+		cout << "     Right    ";
 	}
 	else
 	{
-		cout << "     Right    ";
+		cout << "     Left     ";
 	}
 	if (dest_driving_side == 1)
 	{
-		cout << "     Left     ";
+		cout << "     Right    ";
 	}
 	else
 	{
-		cout << "     Right    ";
+		cout << "     Left     ";
 	}
 	cout << endl << endl;
 	cout << "Press Enter to continue.";
@@ -466,7 +474,7 @@ void replace_home()
 	string home_holder = home_country;
 
 	cout << "Go ahead and choose a new home country. See the list below:" << endl;
-
+	//prints countries from array into console in a vertical list
 	for (string print_country : country_list)
 	{
 		cout << print_country << endl;
@@ -475,9 +483,11 @@ void replace_home()
 	getline(cin, home_country);
 	home_country = return_reg_case(home_country);
 
+	//Validate that string is a valid country before exiting
 	while (loop_bool)
 	{
 		bool not_valid = true;
+		//iterate over country 
 		for (int i = 0; i < sizeof(country_list) / sizeof(country_list[0]); i++)
 		{
 			if (home_country == country_list[i])
@@ -525,9 +535,11 @@ void replace_destination()
 	getline(cin, dest_country);
 	dest_country = return_reg_case(dest_country);
 
+	//Check if string is a valid country
 	while (loop_bool)
 	{
 		bool not_valid = true;
+		//iterate over the country array looking for a match to dest_country
 		for (int i = 0; i < sizeof(country_list) / sizeof(country_list[0]); i++)
 		{
 			if (dest_country == country_list[i])
@@ -660,6 +672,7 @@ int main()
 	dest_driving_side = country_traits[dest_country_index][4];
 	cout << "Great job! You have chosen " << dest_country << "!" << endl << endl ;
 	
+	//runs menu until choice 8 is selected
 	while (run_menu)
 	{
 		//Displays the intro line only on the first iteration
@@ -692,6 +705,7 @@ int main()
 		cin.get(input_char);
 		cin.ignore();
 
+		//runs loop until the character has been validated as an integer between 1 and 8
 		while (!menu_validation)
 		{	
 			if ((input_char >= 49) && (input_char <= 56))
@@ -707,6 +721,7 @@ int main()
 			}
 		}
 
+		//Chooses function call based on users integer input
 		switch (func_choice)
 		{
 			case 1:
